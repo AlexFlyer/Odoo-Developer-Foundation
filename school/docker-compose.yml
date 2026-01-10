@@ -1,0 +1,37 @@
+services:
+  db:
+    image: postgres:15 #imagen de la base de datos
+    container_name: school_db #nombre del contenedor
+    environment:  #variables de entorno para configurar la base de datos
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+    volumes: #volumen para persistir los datos de la base de datos
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck: #verificación de salud del contenedor de la base de datos
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  odoo:
+    image: odoo:17.0 #imagen de Odoo
+    container_name: school_odoo #nombre del contenedor
+    depends_on: #dependencia del contenedor de la base de datos
+      db:
+        condition: service_healthy #esperar a que la base de datos esté saludable
+    ports: #mapeo de puertos
+      - "8070:8069" #puerto 8069 para Odoo
+      - "8072:8072" #puerto 8072 para el servicio de chat en vivo
+    volumes: #volúmenes para persistir datos y configuraciones
+      - ./addons:/mnt/extra-addons #módulos adicionales
+      - ./config:/etc/odoo #configuración de Odoo
+      - ./data:/var/lib/odoo #datos de Odoo
+    
+    command: ["odoo", "--dev", "all", "--db_host", "db", "--db_user", "odoo", "--db_password", "odoo"]
+    stdin_open: true
+    tty: true
+
+    
+volumes:
+  postgres_data: #volumen para la base de datos PostgreSQL
