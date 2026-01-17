@@ -30,11 +30,17 @@ class SchoolCafe(models.Model):
         store=True,
         help='Minimum order amount after applying discount',
     )
-    school_name = fields.Char(string='School Name', readonly=True) 
+    school_name = fields.Char(related='school_school_id.name', store=True, string='School Name', readonly=True) 
 
     _sql_constraints = [
         ('unique_name', 'unique(name)', 'Cafe name must be unique.'),
     ]
+
+    @api.onchange('name')
+    def _onchange_name(self):
+        for record in self:
+            if record.name:
+                record.name = record.name.upper()
 
     @api.constrains('minimum_order_amount')
     def _check_minimum_order_amount(self):
@@ -55,8 +61,14 @@ class SchoolCafe(models.Model):
     @api.model
     def create(self, vals):
         #import pdb; pdb.set_trace()
-        school_id = self.env['school.school'].browse(vals.get('school_school_id')).ensure_one()
-        vals['school_name'] = school_id.name
+        #self = self.with_context(default_description='Created via overridden create method')
+        #import pdb; pdb.set_trace()
+        # ejemplo de como obtener el name de la escuela relacionada
+        #school_id = self.env['school.school'].browse(vals.get('school_school_id')).ensure_one()
+        #vals['school_name'] = school_id.name
+
+        #ejemplo de como usar domain to search for related records
+        #school_records = self.env['school.school'].search([('id','=',vals.get('school_school_id'))])
         return super(SchoolCafe, self).create(vals)
     
     
