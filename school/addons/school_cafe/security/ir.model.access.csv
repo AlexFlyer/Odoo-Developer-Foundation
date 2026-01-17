@@ -1,2 +1,3 @@
 id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
 access_school_cafe_menu,access_school_cafe_menu,model_school_cafe,base.group_user,1,1,1,1
+access_school_school_menu,access_school_school_menu,model_school_school,base.group_user,1,1,1,1
