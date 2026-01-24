@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="cafeteria_base" model="school.cafe">
+        <field name="name">Central Cafeteria</field>
+        <field name="description">The main cafeteria located in the central building.</field>
+        <field name="state">open</field>
+        <field name="table_number">20</field>
+        <field name="discount_rate">10</field>
+        <field name="minimum_order_amount">15.00</field>
+        <field name="launch_date">2023-09-01</field>
+        <field name="school_name">Greenwood High</field>
+    </record>
+</odoo>

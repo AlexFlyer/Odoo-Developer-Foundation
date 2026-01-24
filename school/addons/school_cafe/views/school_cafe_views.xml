@@ -4,9 +4,10 @@
         <field name="name">school.cafe.tree</field>
         <field name="model">school.cafe</field>
         <field name="arch" type="xml">
-            <tree>
+            <tree decoration-success="state == 'open'" decoration-danger="state == 'closed'" decoration-warning="state == 'renovation'">
                 <field name="name"/>
                 <field name="description"/>
+                <field name="state"/>
             </tree>
         </field>
     </record>
@@ -17,16 +18,18 @@
         <field name="arch" type="xml">
             <form>
                 <header>
+                    <button name="action_close_cafe" string="Close Cafe" type="object" class="oe_highlight" context="{'table_number': 18}"/>
+                    <button name="action_open_cafe" string="Open Cafe" type="object" class="oe_highlight" />
                     <field name="state" widget="statusbar" statusbar_visible="open,closed" readonly="0"/>
                 </header>
                 <sheet>
                     <group>
                         <group>
-                            <field name="name"/>
+                            <field name="name" readonly="state == 'closed'"/>
                             <field name="state"/>
                             <field name="launch_datetime"/> 
-                            <field name="create_date"/>
-                            <field name="description" widget="html"/>
+                            <field name="create_date" invisible="state == 'closed'"/>
+                            <field name="description" widget="html" required="1"/>
                             <field name="minimum_order_amount_with_discount"/>
                         </group>
                         <group>
@@ -36,7 +39,7 @@
                             <field name="active" invisible="1"/>
                             <field name="launch_date"/>
                             <field name="school_school_id"/>
-                            <field name="school_name"/>
+                            <field name="school_name" options="{'no_create': True, 'no_create_edit': True, 'no_open': True}"/>
                         </group>
                     </group>
                     <notebook>
@@ -61,13 +64,59 @@
         </field>
     </record>
 
+    #-- Search View ---
+    <record id="view_school_cafe_search" model="ir.ui.view">
+        <field name="name">school.cafe.search</field>
+        <field name="model">school.cafe</field>
+        <field name="arch" type="xml">
+            <search>
+                <field name="name"/>
+                <field name="state"/>
+                <filter name="archive" domain="[('active','=',False)]"/>
+                <group expand="0" string="Agrupar Por">
+                    <filter name="state_group" string="State" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    # kaban view
+    <record id="view_school_cafe_kanban" model="ir.ui.view">
+        <field name="name">school.cafe.kanban</field>
+        <field name="model">school.cafe</field>
+        <field name="arch" type="xml">
+            <kanban>
+                <field name="name"/>
+                <field name="state"/>
+                    <templates>
+                    <t t-name="kanban-box">
+                        <div class="oe_kanban_global_click">
+                            <strong>
+                                <field name="name"/>
+                            </strong>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>   
+        </field>
+    </record>
+
     <record id="action_school_cafe" model="ir.actions.act_window">
         <field name="name">School Cafes</field>
         <field name="res_model">school.cafe</field>
-        <field name="view_mode">tree,form</field>
+        <field name="view_mode">tree,kanban,form</field>
+        <field name="domain">[('state','!=','closed')]</field>
+        <field name="context">{'default_state': 'renovation', 'default_table_number': 15, 'default_name': 'New Cafe'}</field>
+
+        
     </record>
+
+    <menuitem id="menu_school_cafe_root_contact" name="School Cafe" parent="contacts.res_partner_menu_config">
+        <menuitem id="menu_school_cafe_contact" name="Cafes" action="action_school_cafe"/>
+    </menuitem>
 
     <menuitem id="menu_school_cafe_root" name="School Cafe">
         <menuitem id="menu_school_cafe" name="Cafes" action="action_school_cafe"/>
+        <menuitem id="contact" name="Contactos" action="contacts.action_contacts"/>
     </menuitem>
 </odoo>

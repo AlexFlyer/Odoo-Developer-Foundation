@@ -66,12 +66,28 @@ class SchoolCafe(models.Model):
                 record.minimum_order_amount_with_discount = record.minimum_order_amount * (1 - record.discount_rate / 100)
             else:
                 record.minimum_order_amount_with_discount = record.minimum_order_amount
+    
+    def action_close_cafe(self):
+        for record in self:
+            record.state = 'closed'
+            if self.env.context.get('table_number'):
+                record.table_number = self.env.context['table_number']
+            else:
+                record.table_number = 0
+            record.name = record.name + ' - CLOSED'
+
+    def action_open_cafe(self):
+        for record in self:
+            record.state = 'open'
+            record.name = record.name.replace(' - CLOSED', '')
+            record.table_number = 1  # Assign a default table number when opening
 
 
     # inherit create method to add pdb for debugging
     @api.model
     def create(self, vals):
-        #ctx = self._context or {}
+        #ctx = self.env.context or {}
+        
         #if ctx.get('params')['model'] == 'school.cafe':
         #    vals['description'] = 'Created from school cafe model context'
         #self = self.with_context(default_description='Created via overridden create method')

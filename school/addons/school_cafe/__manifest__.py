@@ -9,6 +9,8 @@
         'views/school_cafe_views.xml',
         'views/school_views.xml',
         'views/res_partner_views.xml',
+        'data/cafeteria_data.xml',
+        'data/group.xml',
     ],
     'installable': True,
     'application': True,
