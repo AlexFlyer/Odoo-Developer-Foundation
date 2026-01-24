@@ -21,8 +21,10 @@
                     <group>
                         <field name="name"/>
                         <field name="school_cafeteria_ids"/>
+                        <field name="school_cafe_ids" widget="many2many_tags"/>
                         <field name="school_cafe_ids">
                             <tree>
+                                <field name="sequence"/>
                                 <field name="name"/>
                             </tree>
                             <form>

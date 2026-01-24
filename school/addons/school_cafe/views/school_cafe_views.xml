@@ -16,23 +16,46 @@
         <field name="model">school.cafe</field>
         <field name="arch" type="xml">
             <form>
+                <header>
+                    <field name="state" widget="statusbar" statusbar_visible="open,closed" readonly="0"/>
+                </header>
                 <sheet>
                     <group>
-                        <field name="name"/>
-                        <field name="launch_datetime"/> 
-                        <field name="create_date"/>
-                        <field name="description"/>
-                        <field name="minimum_order_amount_with_discount"/>
+                        <group>
+                            <field name="name"/>
+                            <field name="state"/>
+                            <field name="launch_datetime"/> 
+                            <field name="create_date"/>
+                            <field name="description" widget="html"/>
+                            <field name="minimum_order_amount_with_discount"/>
+                        </group>
+                        <group>
+                            <field name="table_number"/>
+                            <field name="discount_rate" widget="progressbar"/>
+                            <field name="minimum_order_amount"/>
+                            <field name="active" invisible="1"/>
+                            <field name="launch_date"/>
+                            <field name="school_school_id"/>
+                            <field name="school_name"/>
+                        </group>
                     </group>
-                    <group>
-                        <field name="table_number"/>
-                        <field name="discount_rate"/>
-                        <field name="minimum_order_amount"/>
-                        <field name="active" invisible="1"/>
-                        <field name="launch_date"/>
-                        <field name="school_school_id"/>
-                        <field name="school_name"/>
-                    </group>
+                    <notebook>
+                        <page string="Menu Items">
+                            <group>
+
+                                <field name="create_date"/>
+                                <field name="description"/>
+                                <field name="minimum_order_amount_with_discount"/>
+                            </group>
+                        </page>
+                        <page string="Orders">
+                            <group>
+                                <field name="launch_date"/>
+                                <field name="school_school_id"/>
+                                <field name="school_name"/>
+                            </group>
+                        </page>
+                    </notebook>
                 </sheet>
             </form>
         </field>

@@ -16,6 +16,7 @@ class SchoolCafe(models.Model):
     active = fields.Boolean(string='Active', default=True)
     launch_date = fields.Date(string='Launch Date', default=fields.Date.today, help='Fecha de lanzamiento de la cafeteria')
     launch_datetime = fields.Datetime(string='Launch DateTime', default=fields.Datetime.now, help='Fecha y hora de lanzamiento de la cafeteria')
+    sequence = fields.Integer(string='Sequence', default=10, help='Secuencia para ordenar las cafeterias')
 
     school_school_id = fields.Many2one(
         comodel_name='school.school',
@@ -31,6 +32,16 @@ class SchoolCafe(models.Model):
         help='Minimum order amount after applying discount',
     )
     school_name = fields.Char(related='school_school_id.name', store=True, string='School Name', readonly=True) 
+    state = fields.Selection(
+        string='State',
+        selection=[
+            ('open', 'Open'),
+            ('closed', 'Closed'),
+            ('renovation', 'Under Renovation'),
+        ],
+        default='open',
+        help='Current state of the cafe',
+    )
 
     _sql_constraints = [
         ('unique_name', 'unique(name)', 'Cafe name must be unique.'),
@@ -60,15 +71,15 @@ class SchoolCafe(models.Model):
     # inherit create method to add pdb for debugging
     @api.model
     def create(self, vals):
-        #import pdb; pdb.set_trace()
+        #ctx = self._context or {}
+        #if ctx.get('params')['model'] == 'school.cafe':
+        #    vals['description'] = 'Created from school cafe model context'
         #self = self.with_context(default_description='Created via overridden create method')
-        #import pdb; pdb.set_trace()
         # ejemplo de como obtener el name de la escuela relacionada
         #school_id = self.env['school.school'].browse(vals.get('school_school_id')).ensure_one()
         #vals['school_name'] = school_id.name
 
         #ejemplo de como usar domain to search for related records
-        #school_records = self.env['school.school'].search([('id','=',vals.get('school_school_id'))])
         return super(SchoolCafe, self).create(vals)
     
     
