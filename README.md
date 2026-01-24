@@ -5,6 +5,10 @@
 - **Apps Oficiales:** https://apps.odoo.com/apps
 - **Repositorio Odoo 17 (core):** https://github.com/odoo/odoo/tree/17.0
 - **Documentación Odoo 17 (ES):** https://www.odoo.com/documentation/17.0/es/administration/odoo_sh/first_module.html
+- **Documentación Odoo 17 Modelos:** https://www.odoo.com/documentation/17.0/developer/tutorials/server_framework_101/03_basicmodel.html
+- **Documentación Odoo 17 Vistas:** https://www.odoo.com/documentation/17.0/es/developer/tutorials/server_framework_101/06_basicviews.html
+- **Documentación Odoo 17 Widgets:** https://www.odoo.com/documentation/17.0/applications/studio/fields.html#simple-fields
+
 
 ### Docker + Odoo
 - **Imagen oficial Odoo (Docker Hub):** https://hub.docker.com/_/odoo/
@@ -48,4 +52,14 @@ docker attach <container_name>
 ### Permisos (host)
 ```bash
 chown -R 101:101 data/
+```
+
+### Entrar a Contenedores
+```bash
+docker exec -ti <container_name> bash
+```
+### actualizar Modulo desde BD
+```bash
+psql -U odoo -d db_name
+UPDATE ir_module_module SET state = 'to upgrade' WHERE name = 'module_name';
 ```
