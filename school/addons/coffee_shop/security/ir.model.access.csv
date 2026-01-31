@@ -6,5 +6,4 @@ access_coffee_shop_meal,access_coffee_shop_meal,model_meal,base.group_user,1,1,1
 access_coffee_shop_student,access_coffee_shop_student,model_student,base.group_user,1,1,1,1
 
 access_wizard_consumption_excel,access_wizard_consumption_excel,model_wizard_consumption_excel,base.group_user,1,1,1,1
-access_wizard_create_sales,access_wizard_create_sales,model_wizard_create_sales,base.group_user,1,1,1,1
 access_wizard_consumption_report,access_wizard_consumption_report,model_wizard_consumption_report,base.group_user,1,1,1,1

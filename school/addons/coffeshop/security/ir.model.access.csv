@@ -1,0 +1,9 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_coffeshop_carrer_user,coffeshop.carrer user,model_coffeshop_carrer,base.group_user,1,1,1,1
+access_coffeshop_student_user,coffeshop.student user,model_coffeshop_student,base.group_user,1,1,1,1
+access_coffeshop_coffeshop_user,coffeshop.coffeshop user,model_coffeshop_coffeshop,base.group_user,1,1,1,1
+access_coffeshop_meal_user,coffeshop.meal user,model_coffeshop_meal,base.group_user,1,1,1,1
+access_coffeshop_consumption_user,coffeshop.consumption user,model_coffeshop_consumption,base.group_user,1,1,1,1
+
+access_coffeshop_wizard_user,coffeshop.wizard user,model_wizard_consumption_report,base.group_user,1,1,1,1
+access_coffeshop_wizard_excel_user,coffeshop.wizard excel user,model_wizard_consumption_excel,base.group_user,1,1,1,1

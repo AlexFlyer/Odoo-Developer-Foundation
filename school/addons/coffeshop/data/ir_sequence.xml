@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data noupdate="1">
+        <record id="sequence_consumption" model="ir.sequence">
+            <field name="name">Coffeshop Consumption</field>
+            <field name="code">coffeshop.consumption</field>
+            <field name="implementation">standard</field>
+            <field name="prefix">CONSUMP/%(year)s</field>
+            <field name="padding">5</field>
+            <field name="number_next">1</field>
+        </record>
+    </data>
+</odoo>

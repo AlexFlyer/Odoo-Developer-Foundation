@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <menuitem id="menu_coffeshop_root" name="Coffeshop" sequence="10"/>
+
+    <menuitem id="menu_carrer" name="Carrers" parent="menu_coffeshop_root" action="action_carrer" sequence="10"/>
+    <menuitem id="menu_student" name="Students" parent="menu_coffeshop_root" action="action_student" sequence="20"/>
+    <menuitem id="menu_coffeshop" name="Coffeshops" parent="menu_coffeshop_root" action="action_coffeshop" sequence="30"/>
+    <menuitem id="menu_meal" name="Meals" parent="menu_coffeshop_root" action="action_meal" sequence="40"/>
+    <menuitem id="menu_consumption" name="Consumptions" parent="menu_coffeshop_root" action="action_consumption" sequence="50"/>
+
+</odoo>

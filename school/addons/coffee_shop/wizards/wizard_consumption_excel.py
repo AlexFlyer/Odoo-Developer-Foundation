@@ -24,7 +24,6 @@ class ReportConsumptionExcel(models.AbstractModel):
     _name = 'report.coffee_shop.report_consumption_excel'
     _inherit = 'report.report_xlsx.abstract'
 
-    # def generate_xlsx_report(self, workbook, data, partners):
     def generate_xlsx_report(self, workbook, ctx, data):
         sheet = workbook.add_worksheet('PESTAÑA')
 

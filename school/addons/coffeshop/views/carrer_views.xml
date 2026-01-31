@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_carrer_tree" model="ir.ui.view">
+        <field name="name">coffeshop.carrer.tree</field>
+        <field name="model">coffeshop.carrer</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="code"/>
+            </tree>
+        </field>
+    </record>
+    <record id="view_carrer_form" model="ir.ui.view">
+        <field name="name">coffeshop.carrer.form</field>
+        <field name="model">coffeshop.carrer</field>
+        <field name="arch" type="xml">
+            <form string="Carrer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                        <group>
+                            <field name="code"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Students" name="students_page">
+                            <field name="student_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+    # action for carrer
+    <record id="action_carrer" model="ir.actions.act_window">
+        <field name="name">Carrers</field>
+        <field name="res_model">coffeshop.carrer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+</odoo>
