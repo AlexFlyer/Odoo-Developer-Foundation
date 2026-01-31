@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="coffee_shop_form_view" model="ir.ui.view">
+        <field name="name">coffee.shop.form.view</field>
+        <field name="model">coffee.shop</field>
+        <field name="arch" type="xml">
+            <form string="Coffee Shop">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="location"/>
+                            <field name="meal_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="coffee_shop_tree_view" model="ir.ui.view">
+        <field name="name">coffee.shop.tree.view</field>
+        <field name="model">coffee.shop</field>
+        <field name="arch" type="xml">
+            <tree string="Coffee Shop Tree">
+                <field name="name"/>
+                <field name="location"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="coffee_shop_action" model="ir.actions.act_window">
+        <field name="name">Coffee Shops</field>
+        <field name="res_model">coffee.shop</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_coffee_shop_coffee_shop" name="Coffee Shops" action="coffee_shop_action" parent="menu_coffee_shop_root"/>
+</odoo>

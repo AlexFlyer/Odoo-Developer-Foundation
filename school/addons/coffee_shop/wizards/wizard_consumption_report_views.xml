@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_wizard_consumption_report_form" model="ir.ui.view">
+        <field name="name">wizard.consumption.report.form</field>
+        <field name="model">wizard.consumption.report</field>
+        <field name="arch" type="xml">
+            <form string="Consumption Report Wizard">
+                <group>
+                    <field name="coffee_shop_ids" widget="many2many_tags"
+                        options="{'no_create': True, 'no_create_edit': True}"/>
+                    <field name="date_from"/>
+                    <field name="date_to"/>
+                </group>
+                <footer>
+                    <button name="action_generate_pdf" type="object" string="Generate PDF" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="wizard_reporte_consumo_action" model="ir.actions.act_window">
+        <field name="name">Consumption Report</field>
+        <field name="res_model">wizard.consumption.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+  <menuitem
+    id="menu_wizard_reporte_consumo"
+    name="Consumption Report"
+    action="coffee_shop.wizard_reporte_consumo_action"
+    parent="coffee_shop.coffee_shop_reports_menu"
+    sequence="16"/>
+</odoo>

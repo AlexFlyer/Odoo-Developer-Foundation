@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="meal_form_view" model="ir.ui.view">
+        <field name="name">meal.form.view</field>
+        <field name="model">meal</field>
+        <field name="arch" type="xml">
+            <form string="Meal">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="price"/>
+                            <field name="coffee_shop_ids" widget="many2many_tags"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="meal_tree_view" model="ir.ui.view">
+        <field name="name">meal.tree.view</field>
+        <field name="model">meal</field>
+        <field name="arch" type="xml">
+            <tree string="Meal Tree">
+                <field name="name"/>
+                <field name="price"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="meal_action" model="ir.actions.act_window">
+        <field name="name">Meals</field>
+        <field name="res_model">meal</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_meal_meal" name="Meals" action="meal_action" parent="coffee_shop_general"/>
+</odoo>

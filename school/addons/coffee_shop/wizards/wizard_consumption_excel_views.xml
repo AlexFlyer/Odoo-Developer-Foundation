@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="wizard_consumption_excel_form" model="ir.ui.view">
+        <field name="name">wizard.consumption.excel.form</field>
+        <field name="model">wizard.consumption.excel</field>
+        <field name="arch" type="xml">
+            <form string="Consumption Excel Wizard">
+                <group>
+                    <field name="carrer_ids" widget="many2many_tags" options="{'no_create': True, 'no_create_edit': True}"/>
+                </group>
+                <footer>
+                    <button name="action_print_report" type="object" string="Print Report" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="wizard_consumption_excel_action" model="ir.actions.act_window">
+        <field name="name">Popular Consumptions</field>
+        <field name="res_model">wizard.consumption.excel</field>
+        <field name="view_id" ref="coffee_shop.wizard_consumption_excel_form"/>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+        id="wizard_consumption_excel_menu"
+        name="Popular Consumptions"
+        parent="coffee_shop.coffee_shop_reports_menu"
+        action="coffee_shop.wizard_consumption_excel_action"
+        sequence="16"/>
+</odoo>

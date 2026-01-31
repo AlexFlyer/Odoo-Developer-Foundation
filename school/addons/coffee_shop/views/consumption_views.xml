@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="consumption_form_view" model="ir.ui.view">
+        <field name="name">consumption.form.view</field>
+        <field name="model">consumption</field>
+        <field name="arch" type="xml">
+            <form string="Consumption">
+                <header>
+                    <button name="action_create_sale" type="object" string="Create Sale"
+                        invisible="state != 'draft'"/>
+                    <button name="action_cancel" type="object" string="Cancel"
+                        invisible="state != 'draft'"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,delivered"/>
+                </header>
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name" readonly="state != 'draft'"/>
+                            <field name="consumption_date" readonly="state != 'draft'"/>
+                            <field name="coffee_shop_id" options="{'no_create': True, 'no_create_edit': True}" readonly="state != 'draft'"/>
+                            <field name="student_id" options="{'no_create': True, 'no_create_edit': True}" readonly="state != 'draft'"/>
+                            <field name="meal_id" options="{'no_create': True, 'no_create_edit': True}" readonly="state != 'draft'"/>
+                            <field name="state"/>
+                        </group>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="consumption_tree_view" model="ir.ui.view">
+        <field name="name">consumption.tree.view</field>
+        <field name="model">consumption</field>
+        <field name="arch" type="xml">
+            <tree string="Consumption Tree">
+                <field name="name"/>
+                <field name="consumption_date"/>
+                <field name="student_id"/>
+                <field name="coffee_shop_id"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="consumption_search_view" model="ir.ui.view">
+        <field name="name">consumption.search.view</field>
+        <field name="model">consumption</field>
+        <field name="arch" type="xml">
+            <search string="Consumption Search">
+                <field name="name"/>
+                <field name="consumption_date"/>
+                <field name="student_id"/>
+                <field name="coffee_shop_id"/>
+                <filter name="draft" string="Draft" domain="[('state', '=', 'draft')]"/>
+                <filter name="delivered" string="Delivered" domain="[('state', '=', 'delivered')]"/>
+                <filter name="cancelled" string="Cancelled" domain="[('state', '=', 'cancelled')]"/>
+                <group expand="0" string="Group By">
+                    <filter string="Coffee Shop" name="coffee_shop" context="{'group_by':'coffee_shop_id'}"/>
+                    <filter string="Student" name="student" context="{'group_by':'student_id'}"/>
+                    <filter string="State" name="state" context="{'group_by':'state'}"/>
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="consumption_action" model="ir.actions.act_window">
+        <field name="name">Consumption</field>
+        <field name="res_model">consumption</field>
+        <field name="view_mode">tree,form</field>
+        <field name="search_view_id" ref="consumption_search_view"/>
+        <field name="context">{'default_state': 'draft'}</field>
+    </record>
+
+    <menuitem id="menu_consumption" name="Consumption" action="consumption_action" parent="coffee_shop_general"/>
+</odoo>

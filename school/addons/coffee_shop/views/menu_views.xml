@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>   
+    <menuitem
+        id="coffee_shop_root"
+        name="School"
+        sequence="16"
+        />
+
+    <menuitem
+        id="coffee_shop_general"
+        parent="coffee_shop.coffee_shop_root"
+        name="General Data"
+        sequence="16"
+        />
+
+    <menuitem
+        id="coffee_shop_reports_menu"
+        parent="coffee_shop.coffee_shop_root"
+        name="Reports"
+        sequence="16"
+        />
+    
+    <menuitem 
+        id="menu_coffee_shop_root" 
+        name="Coffee Shops" 
+        parent="coffee_shop.coffee_shop_root"/>
+
+
+</odoo>

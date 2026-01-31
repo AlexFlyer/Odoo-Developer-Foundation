@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="sequence_consumption" model="ir.sequence">
+        <field name="name">Consumption</field>
+        <field name="implementation">standard</field>
+        <field name="code">consumption</field>
+        <field name="active" eval="True"/>
+        <field name="prefix">CON/%(year)s/</field>
+        <field name="padding">4</field>
+        <field name="number_increment">1</field>
+    </record>
+</odoo>

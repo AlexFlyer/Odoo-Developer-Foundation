@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="carrer_form_view" model="ir.ui.view">
+        <field name="name">carrer.form.view</field>
+        <field name="model">carrer</field>
+        <field name="arch" type="xml">
+            <form string="Carrer">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="name"/>
+                        </group>
+                    </group>
+                    <notebook>
+                        <page string="Students" name="students_page">
+                            <field name="student_ids"/>
+                        </page>
+                    </notebook>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="carrer_tree_view" model="ir.ui.view">
+        <field name="name">carrer.tree.view</field>
+        <field name="model">carrer</field>
+        <field name="arch" type="xml">
+            <tree string="Carrer Tree">
+                <field name="name"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="carrer_action" model="ir.actions.act_window">
+        <field name="name">Carrers</field>
+        <field name="res_model">carrer</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem id="menu_carrer_root" name="Carrers" parent="coffee_shop_general" action="carrer_action"/>
+</odoo>

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="action_consumption_excel" model="ir.actions.report">
+      <field name="name">Consumption Popular</field>
+      <field name="model">wizard.consumption.excel</field>
+      <field name="report_name">coffee_shop.report_consumption_excel</field>
+      <field name="report_file">Consumption Popular</field>
+      <field name="report_type">xlsx</field>
+    </record>
+</odoo>

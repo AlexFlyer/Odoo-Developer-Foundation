@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="product_consumption" model="product.product">
+        <field name="name">Consumption</field>
+        <field name="categ_id" ref="product.product_category_all"/>
+        <field name="standard_price">0</field>
+        <field name="list_price">0</field>
+        <field name="type">service</field>
+        <field name="sale_ok">True</field>
+        <field name="purchase_ok">False</field>
+        <field name="description">Consumption</field>
+        <field name="default_code">734543082</field>
+    </record>
+</odoo>

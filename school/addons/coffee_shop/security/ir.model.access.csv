@@ -1,0 +1,10 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_coffee_shop_coffee_shop,access_coffee_shop_coffee_shop,model_coffee_shop,base.group_user,1,1,1,1
+access_coffee_shop_carrer,access_coffee_shop_carrer,model_carrer,base.group_user,1,1,1,1
+access_coffee_shop_consumption,access_coffee_shop_consumption,model_consumption,base.group_user,1,1,1,1
+access_coffee_shop_meal,access_coffee_shop_meal,model_meal,base.group_user,1,1,1,1
+access_coffee_shop_student,access_coffee_shop_student,model_student,base.group_user,1,1,1,1
+
+access_wizard_consumption_excel,access_wizard_consumption_excel,model_wizard_consumption_excel,base.group_user,1,1,1,1
+access_wizard_create_sales,access_wizard_create_sales,model_wizard_create_sales,base.group_user,1,1,1,1
+access_wizard_consumption_report,access_wizard_consumption_report,model_wizard_consumption_report,base.group_user,1,1,1,1
